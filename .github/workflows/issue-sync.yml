@@ -1,0 +1,15 @@
+name: Issue Sync
+run-name: "Syncing issue #${{ github.event.issue.number }}"
+on:
+  issues:
+    types: [opened]
+jobs:
+  sync-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call endpoint
+        run: |
+          curl -sSL -X POST http://httpbin.org/post \
+            --data-urlencode 'title=${{ github.event.issue.title }}' \
+            --data-urlencode 'body=${{ github.event.issue.body }}' \
+            --data-urlencode 'url=${{ github.event.issue.html_url }}' \
