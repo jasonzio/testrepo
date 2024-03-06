@@ -12,6 +12,6 @@ jobs:
       - name: Call endpoint
         run: |
           http --ignore-stdin "${{ secrets.ISSUE_PAYLOAD_URL }}" \
-              title="${{ github.event.issue.title }}" \
-              text="${{ github.event.issue.body }}" \
-              url="${{ github.event.issue.html_url }}"
+              title="${{ toJSON(github.event.issue.title) }}" \
+              text="${{ toJSON(github.event.issue.body) }}" \
+              url="${{ toJSON(github.event.issue.html_url) }}"
