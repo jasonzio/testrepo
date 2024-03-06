@@ -7,9 +7,11 @@ jobs:
   sync-issue:
     runs-on: ubuntu-latest
     steps:
+      - name: Setup dependencies
+        run: apt-get install httpie
       - name: Call endpoint
         run: |
-          curl -sSL -X POST "${{ secrets.ISSUE_PAYLOAD_URL }}" \
-            --data-urlencode 'title=${{ github.event.issue.title }}' \
-            --data-urlencode 'body=${{ github.event.issue.body }}' \
-            --data-urlencode 'url=${{ github.event.issue.html_url }}'
+          https "${{ secrets.ISSUE_PAYLOAD_URL }}" \
+              title="${{ github.event.issue.title }}" \
+              body="${{ github.event.issue.body }}" \
+              url="${{ github.event.issue.html_url }}"
