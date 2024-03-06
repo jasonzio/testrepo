@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Call endpoint
         run: |
-          curl -sSL -X POST ${{ secrets.ISSUE_PAYLOAD_URL }} \
+          curl -sSL -X POST "${{ secrets.ISSUE_PAYLOAD_URL }}" \
             --data-urlencode 'title=${{ github.event.issue.title }}' \
             --data-urlencode 'body=${{ github.event.issue.body }}' \
             --data-urlencode 'url=${{ github.event.issue.html_url }}' \
