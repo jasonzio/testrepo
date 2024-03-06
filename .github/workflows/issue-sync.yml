@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup dependencies
-        run: apt-get install httpie
+        run: sudo apt-get install -y httpie
       - name: Call endpoint
         run: |
           https "${{ secrets.ISSUE_PAYLOAD_URL }}" \
