@@ -11,7 +11,10 @@ jobs:
         run: sudo apt-get install -y httpie
       - name: Call endpoint
         run: |
-          https "http://httpbin.org/post" \
+          http "http://httpbin.org/post" title="ok" body="" url="test"
+      - name: Call endpoint
+        run: |
+          http "${{ secrets.ISSUE_PAYLOAD_URL }}" \
               title="${{ github.event.issue.title }}" \
               text="${{ github.event.issue.body }}" \
               url="${{ github.event.issue.html_url }}"
