@@ -13,5 +13,5 @@ jobs:
         run: |
           http --ignore-stdin "${{ secrets.ISSUE_PAYLOAD_URL }}" \
               title=${{ toJSON(github.event.issue.title) }} \
-              text=${{ toJSON(github.event.issue.body) }} \
+              body=${{ toJSON(github.event.issue.body) }} \
               url=${{ toJSON(github.event.issue.html_url) }}
